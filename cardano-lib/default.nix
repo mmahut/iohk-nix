@@ -142,6 +142,14 @@ let
       signingKey = ./selfnode.key;
       topology = ./selfnode-topology.json;
     };
+    alpha1 = rec {
+      private = false;
+      relaysNew = "relays.alpha1.dev.iohkdev.io";
+      networkConfig = import ./alpha1-config.nix;
+      nodeConfig = networkConfig // defaultLogConfig;
+      genesisFile = networkConfig.GenesisFile;
+      topology = ./selfnode-topology.json;
+    };
     latency-tests = {
       relays = "relays.latency-tests.aws.iohkdev.io";
       edgeNodes = [
